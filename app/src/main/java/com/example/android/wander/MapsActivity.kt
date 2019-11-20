@@ -45,6 +45,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val homeLatLng = LatLng(latitude, longitude)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
         map.addMarker(MarkerOptions().position(homeLatLng))
+
+        setMapLongClickListener(map)
+    }
+
+    private fun setMapLongClickListener(map:GoogleMap) {
+        map.setOnMapClickListener { latLng ->
+            map.addMarker(
+                MarkerOptions()
+                    .position(latLng)
+            )
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
